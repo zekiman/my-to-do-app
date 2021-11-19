@@ -1,0 +1,118 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Raleway:wght@700&display=swap');
+
+:root{
+    --main-color: #2F80ED;
+    --black: #333333;
+    --grey: #828282; 
+    --grey2: #BDBDBD;
+    --red: #EB5757;
+}
+
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow: hidden;
+    scroll-padding-top: 9rem;
+}
+
+html::-webkit-scrollbar{
+    width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: #fff;
+    border-radius: 5rem;
+}
+
+.header {
+    position: fixed; 
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.title-div{
+    /* display: flex;
+    justify-content: center; */
+    margin: 32px 0 90px 0;
+}
+
+.title-text{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    text-align: center;
+}
+
+.category-div{
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+
+.category-div h1 {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--black);
+    margin-bottom: 15px;
+}
+
+hr {
+    border-top: 1px solid #BDBDBD;
+    max-width: 80%;
+    margin: auto;
+}
+
+.all-border,
+.active-border,
+.completed-border{
+    width: 89px;
+    height: 4px;
+    background-color: var(--main-color);
+    border-radius: 4px 4px 0px 0px;
+}
+
+.all-border{
+    display: block;
+}
+
+.active-border{
+    display: none;
+}
+
+.completed-border{
+    display: none;
+}
+
+#form-details {
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+

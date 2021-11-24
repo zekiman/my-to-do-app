@@ -26,7 +26,7 @@ deleteAllBtn = document.querySelector('.delete-all-btn-div')
 //* SHOWING THE TASK RULES
 
 // variable of category name
-let selectedCategory = 'active'
+let selectedCategory = 'all'
 
 // when clicked to categories..
 categories.addEventListener('click', function (e) {
@@ -157,7 +157,9 @@ addTaskBtn.addEventListener('click', function (e) {
     // get value from input
     newTask = taskInput.value
 
-    console.log(newTask) // test (delete this later)
+    if(taskInput.value==''){
+        alert('Please add the details at first.')
+    }else{
 
     //* create a new task elements
 
@@ -203,6 +205,7 @@ addTaskBtn.addEventListener('click', function (e) {
 
     console.log(created_taskSection) // test (delate later)
 
+    }
     // clear value of input
     taskInput.value = '';
 
@@ -247,16 +250,18 @@ allTasks.addEventListener('click', function (e) {
 })
 
 
+//test
+document.addEventListener('click',function(e){
+    e.target;
+    console.log(selectedCategory)
+})
 
 
 
 //* DELETING ALL TASKS
 
-console.log(taskDiv.length)
-console.log(taskDiv)
-
 // add event listener
-deleteAllBtn.addEventListener('click', function (e) {
+deleteAllBtn.addEventListener('click', function(e) {
     e.preventDefault();
 
     if (selectedCategory == 'active') {
@@ -285,6 +290,9 @@ deleteAllBtn.addEventListener('click', function (e) {
     if (selectedCategory == 'all') {
 
         let taskDivNew = document.querySelectorAll('.task-section')
+        
+        //test
+        console.log(taskDivNew)
 
         for (let i = 0; i < taskDivNew.length; i++) {
             taskDivNew[i].remove()

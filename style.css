@@ -18,7 +18,6 @@
     outline: none;
     border: none;
     text-decoration: none;
-    text-transform: capitalize;
     transition: .2s linear;
 }
 
@@ -62,6 +61,7 @@ html::-webkit-scrollbar-thumb{
     font-size: 36px;
     line-height: 42px;
     text-align: center;
+    text-transform: lowercase;
 }
 
 .category-div{
@@ -70,6 +70,7 @@ html::-webkit-scrollbar-thumb{
     align-content: flex-start;
     justify-content: space-evenly;
     text-align: center;
+    text-transform: capitalize;
 }
 
 
@@ -81,11 +82,12 @@ html::-webkit-scrollbar-thumb{
     line-height: 17px;
     color: var(--black);
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 hr {
     border-top: 1px solid #BDBDBD;
-    max-width: 80%;
+    width: 650px;
     margin: auto;
 }
 
@@ -98,21 +100,155 @@ hr {
     border-radius: 4px 4px 0px 0px;
 }
 
-.all-border{
-    display: block;
-}
+
 
 .active-border{
-    display: none;
+    background-color: transparent;
 }
 
 .completed-border{
-    display: none;
+    background: transparent;
 }
+
+.add-task-section{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 33px;
+}
+
+.add-task-section input::placeholder{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    text-transform: lowercase;
+    line-height: 17px;
+    color: var(--grey) !important;
+}
+
 
 #form-details {
     border: 1px solid #BDBDBD;
     box-sizing: border-box;
     border-radius: 12px;
+    width: 476px;
+    height: 56px;
+    padding: 0 12px;
 }
 
+#send-btn {
+    width: 109px;
+    height: 56px;
+    background-color: var(--main-color);
+    box-shadow: 0px 2px 6px rgba(127, 177, 243, 0.4);
+    border-radius: 12px;
+    margin-left: 25px;
+}
+
+
+#send-btn:hover{
+    cursor: pointer;
+}
+
+.add-task-section input[type=submit]{
+    color: #fff;
+}
+
+.task{
+    max-width: 608px;
+    margin: auto;
+    display: flex;
+}
+
+.task-section{
+    margin-bottom: 29px;
+}
+
+.task-name-text{
+    margin-left: 7px;
+}
+
+.checkbox{
+    height: 20px;
+    width: 20px;
+}
+
+.task-name-text{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000;
+}
+
+.task-name-text::first-letter{
+    text-transform: uppercase;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.icon-div {
+    margin-left: auto;
+
+}
+
+.material-icons{
+    color: var(--grey2);
+}
+
+.none {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+.delete-all-btn-div{
+    width: 124px;
+    height: 40px;
+    background-color: var(--red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 4px;
+    margin-left: auto !important;
+}
+
+.checkbox:hover,
+.icon-div:hover,
+.align-to-right *:hover{
+    cursor: pointer;
+}
+
+
+.delete-all-btn-div form span{
+    color: #fff;
+    width: 7px;
+    height: 9.47px;
+    font-size: 12px;
+}
+
+.delete-all-btn-div input[type=submit]{
+    background-color: var(--red);
+    color: #fff;
+    margin-left: 5.5px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    width: 57px;
+    height: 15.79px;
+}
+
+.align-to-right{
+    max-width: 608px;
+    margin: auto;
+}
+
+
+.deleted{
+    display: none;
+}

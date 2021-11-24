@@ -12,6 +12,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
@@ -55,21 +56,87 @@
 
     <hr>
 
-    <form>
+    <form class="add-task-section">
       <input type="text" name="" id="form-details" placeholder="add details">
-      <input type="submit" id="send-btn">
+      <input type="submit" id="send-btn" value="Add">
     </form>
 
-    <div class="task-section">
+    <div class="all-tasks">
+    <!-- <div class="task-section first-task">
       <div class="task">
         <form>
-          <input type="checkbox">
+          <input type="checkbox" class="checkbox">
         </form>
         <p class="task-name-text">
-          sample Task
+          do coding chalenges
         </p>
+        <div class="icon-div">
+          <span class="material-icons delete-icon">
+            delete_outline
+            </span>
+        </div>
       </div>
     </div>
+
+    <div class="task-section second-task">
+      <div class="task">
+        <form>
+          <input type="checkbox" class="checkbox">
+        </form>
+        <p class="task-name-text">
+          do coding chalenges
+        </p>
+        <div class="icon-div">
+          <span class="material-icons delete-icon">
+            delete_outline
+            </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-section third-task done">
+      <div class="task">
+        <form>
+          <input type="checkbox" class="checkbox"  checked>
+        </form>
+        <p class="task-name-text">
+          do coding chalenges
+        </p>
+        <div class="icon-div">
+          <span class="material-icons delete-icon">
+            delete_outline
+            </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-section third-task done">
+      <div class="task">
+        <form>
+          <input type="checkbox" class="checkbox"  checked>
+        </form>
+        <p class="task-name-text">
+          do coding chalenges
+        </p>
+        <div class="icon-div">
+          <span class="material-icons delete-icon">
+            delete_outline
+            </span>
+        </div>
+      </div>
+    </div> -->
+  </div>
+
+    <div class="align-to-right">
+    <div class="delete-all-btn-div">
+      <form>
+        <span class="material-icons delete-icon">
+          delete_outline
+          </span>
+        <input type="submit" value="delete all" id="delete-all-btn" > 
+      </form>
+    </div>
+  </div>
 
   </header>
 

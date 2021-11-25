@@ -367,10 +367,9 @@ function taskChecked(e){
 
     if(e.target.checked){
        //if checkbox is checked, make the task lined
-       taskText.style.textDecoration='line-through'
-
-   }else{
+       taskText.classList.add('checked')
+    }else{
         //if checkbox isn't checked, make the task text without lined
-        taskText.style.textDecoration=''   
+        taskText.classList.remove('checked')  
    }
 }

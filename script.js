@@ -20,6 +20,11 @@ allTasks = document.querySelector('.all-tasks')
 
 // delete all button
 deleteAllBtn = document.querySelector('.delete-all-btn-div')
+deleteAllBtn2 = document.querySelector('#delete-all-btn')
+deleteAllBtn2.addEventListener('click',function(e){
+    e.preventDefault();
+    console.log('test')
+})
 
 // default category
 let selectedCategory = 'all'
@@ -71,9 +76,7 @@ function showCompleted() {
         } else {
             task.style.display = 'none'
         }
-
     })
-
 }
 
 // the function that showing all tasks
@@ -114,11 +117,18 @@ document.addEventListener('click',function(e){
 
     // 2- When Delete Icon is clicked
     if (e.target.className.includes('delete-icon')){
-        deletingTask(e);
+        if(e.target.parentElement.parentElement.parentElement.className.includes('task-section')){
+            deletingTask(e);
+        }
     }
 
     // 3- When 'Delete All' button is clicked
     if (e.target==deleteAllBtn){
+        deleteAllItems(e);
+    }
+
+    // 3.2 - When 'Delete All' buton is clicked (a tag that include btn div)
+    if (e.target==deleteAllBtn2){
         deleteAllItems(e);
     }
 
@@ -194,15 +204,14 @@ function deletingTask(e){
     taskText.remove();
 
     // Delete also from local storage by the function with parameter that text of the task
-    deleteFromLocalStorage(e.target.parentElement.previousElementSibling.textContent)
+    deleteFromLocalStorage(e.target.parentElement.previousElementSibling.textContent);
+
 }
 
 
 // //* 3- DELETING ALL TASKS ----------------------------------------------------
 
 function deleteAllItems(e) {
-
-    e.preventDefault();
 
     //test
     console.log('selected category: '+selectedCategory)
@@ -216,6 +225,8 @@ function deleteAllItems(e) {
             //for all task item; if it has checked, remove it
             if(!task.firstElementChild.firstElementChild.firstElementChild.checked){
                 task.remove();
+                //delete the active tasks also from local storage
+                deleteFromLocalStorage(task.firstElementChild.firstElementChild.nextElementSibling.textContent)
             }
         })
    }
@@ -226,6 +237,8 @@ function deleteAllItems(e) {
             //for all task item; if it hasnot checked, remove it
             if(task.firstElementChild.firstElementChild.firstElementChild.checked){
                 task.remove();
+                //delete the completed tasks also from local storage
+                deleteFromLocalStorage(task.firstElementChild.firstElementChild.nextElementSibling.textContent)
             }
         })
    }
@@ -235,8 +248,12 @@ function deleteAllItems(e) {
         taskDivNew.forEach(function(task){
             //remove all tasks
             task.remove();
+
+            //clear all task from local storage
+            localStorage.clear();
         })
    }
+
 }
 
 

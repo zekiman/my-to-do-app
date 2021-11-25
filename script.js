@@ -1,4 +1,4 @@
-//* DOM ELEMENTS
+//******************* DOM ELEMENTS *******************
 
 // categories
 categories = document.querySelector('.category-div');
@@ -21,148 +21,283 @@ allTasks = document.querySelector('.all-tasks')
 // delete all button
 deleteAllBtn = document.querySelector('.delete-all-btn-div')
 
-
-
-//* SHOWING THE TASK RULES
-
-// variable of category name
+// default category
 let selectedCategory = 'all'
 
-// when clicked to categories..
-categories.addEventListener('click', function (e) {
 
-    // if clicked to 'all category'
-    if (e.target.className == 'all-div' ||
-        e.target.className == 'all-text') {
-        
-        // set value of selected category name as 'all'
-        selectedCategory = 'all'
-     
-        // run the show function
-        show();
-    };
+
+//********* RULES OF SHOWING THE CATEGORIES ********* 
+
+
+// the function that showing active tasks
+function showActive() {
+
+    // set the category underline 
+    all_border.style.backgroundColor = 'transparent';
+    active_border.style.backgroundColor = '#2F80ED';
+    completed_border.style.backgroundColor = 'transparent';
+
+    // DOM new nodelist for determining new tasks and to affect also them
+    let taskDivNew = document.querySelectorAll('.task-section')
+
+    // for each task
+    taskDivNew.forEach(function (task) {
+
+        // if task is checked
+        if (task.firstElementChild.firstElementChild.firstElementChild.checked) {
+            // don't display it!
+            task.style.display = 'none'
+        } else {
+            // display all of them
+            task.style.display = 'block'
+        }
+    })
+}
+
+// the function that showing completed tasks
+function showCompleted() {
+
+    // set the category underline 
+    all_border.style.backgroundColor = 'transparent';
+    active_border.style.backgroundColor = 'transparent';
+    completed_border.style.backgroundColor = '#2F80ED';
+
+    let taskDivNew = document.querySelectorAll('.task-section')
+
+    taskDivNew.forEach(function (task) {
+
+        if (task.firstElementChild.firstElementChild.firstElementChild.checked) {
+            task.style.display = 'block'
+        } else {
+            task.style.display = 'none'
+        }
+
+    })
+
+}
+
+// the function that showing all tasks
+function showAll() {
+
+    // set the category underline 
+    all_border.style.backgroundColor = '#2F80ED';
+    active_border.style.backgroundColor = 'transparent';
+    completed_border.style.backgroundColor = 'transparent';
+
+    let taskDivNew = document.querySelectorAll('.task-section')
+
+    taskDivNew.forEach(function (task) {
+
+        task.style.display = 'block'
+    })
+}
+//-------------------------------------------------
+
+
+//************** ADD EVENT LISTENERS ************** 
+
+document.addEventListener('click',function(e){
     
-    // if clicked to 'active category'
+    // (test) e.target;
+    console.log('e.target = ')
+    console.log(e.target)
+
+    // When Checkbox is clicked
+    if(e.target.className == 'checkbox'){
+        taskChecked(e);
+    }
+
+    // 1- When 'Add' Button is clicked
+    if(e.target==addTaskBtn){
+        addingNewTask(e);
+    }
+
+    // 2- When Delete Icon is clicked
+    if (e.target.className.includes('delete-icon')){
+        deletingTask(e);
+    }
+
+    // 3- When 'Delete All' button is clicked
+    if (e.target==deleteAllBtn){
+        deleteAllItems(e);
+    }
+
+
+    //* (!) Categories ----------------
+    // When Click to category 'All'
+    if (e.target.className == 'all-div' ||
+        e.target.className == 'all-text'){
+            
+            //Set the selectedCategory value as 'all' and run show function  
+            selectedCategory = 'all';
+            showAll();
+    }
+
+    // When Click to category 'Active'
     if (e.target.className == 'active-div' ||
-        e.target.className == 'active-text') {
-
-        // set value of selected category name as 'active'
-        selectedCategory = 'active'
-
-        // run the show function
-        show();
-    };
-
-    // if clicked to 'active category' 
+        e.target.className == 'active-text'){
+            
+            //Set the selectedCategory value as 'all' and run show function  
+            selectedCategory = 'active';
+            showActive();
+    }
+    
+    // When Click to category 'Completed'
     if (e.target.className == 'completed-div' ||
-        e.target.className == 'completed-text') {
+        e.target.className == 'completed-text'){
+            
+            //Set the selectedCategory value as 'all' and run show function  
+            selectedCategory = 'completed';
+            showCompleted();
+    } 
+    //* (!) Categories End --------------
+    
 
-        // set value of selected category name as 'active'
-        selectedCategory = 'completed'
 
-        // run the show function
-        show();
-    };
+
 
 })
 
+// ! FEATURES RELATED TO TASKS (ADDING & DELETING A TASK & DELETING ALL TASKS)
 
-// the function to showing tasks
-function show() {
+//* 1- ADDING A NEW TASK FUNCTION  ---------------------------------------------
 
-    // if selected categori is 'active'
-    if (selectedCategory == 'active') {
-
-        // set the category underline 
-        all_border.style.backgroundColor = 'transparent';
-        active_border.style.backgroundColor = '#2F80ED';
-        completed_border.style.backgroundColor = 'transparent';
-
-        
-        let taskDivNew = document.querySelectorAll('.task-section')
-
-        for (let i = 0; i < taskDivNew.length; i++) {
-            if (taskDivNew[i].className.includes('done')) {
-                taskDivNew[i].style.display = 'none';
-            }
-            if (!taskDivNew[i].className.includes('done')) {
-                taskDivNew[i].style.display = 'block';
-            }
-        }
-    }
-
-    if (selectedCategory == 'completed') {
-        all_border.style.backgroundColor = 'transparent';
-        active_border.style.backgroundColor = 'transparent';
-        completed_border.style.backgroundColor = '#2F80ED';
-
-        let taskDivNew = document.querySelectorAll('.task-section')
-
-        for (let i = 0; i < taskDivNew.length; i++) {
-            if (taskDivNew[i].className.includes('done')) {
-                taskDivNew[i].style.display = 'block';
-            }
-            if (!taskDivNew[i].className.includes('done')) {
-                taskDivNew[i].style.display = 'none';
-            }
-        }
-    }
-
-
-    if (selectedCategory == 'all') {
-        all_border.style.backgroundColor = '#2F80ED';
-        active_border.style.backgroundColor = 'transparent';
-        completed_border.style.backgroundColor = 'transparent';
-
-        let taskDivNew = document.querySelectorAll('.task-section')
-
-        for (let i = 0; i < taskDivNew.length; i++) {
-            if (taskDivNew[i].className.includes('done')) {
-                taskDivNew[i].style.display = 'block'
-            }
-            if (!taskDivNew[i].className.includes('done')) {
-                taskDivNew[i].style.display = 'block'
-            }
-        }
-    }
-}
-
-// delete this (test)
-
-
-
-// categories.addEventListener('click',function(e){
-
-// })
-
-
-// while on All category, show all
-
-// while on Active category, show all that dont have checked attribute
-
-// while on Completed category, show all that have checked attribute 
-
-
-
-
-
-
-//* ADDING A NEW TASK
-
-addTaskBtn.addEventListener('click', function (e) {
+function addingNewTask(e){
 
     e.preventDefault();
 
-
-    // get value from input
-    newTask = taskInput.value
-
+    // when details input is empty, alert
     if(taskInput.value==''){
         alert('Please add the details at first.')
-    }else{
+    }else{ 
 
-    //* create a new task elements
+        // if input isn't empty, run the create item function with input value parameter
+        createItem(taskInput.value);
 
+        // and run the setItemToLocalStorage function to saving the value to LS
+        setItemToLocalStorage(taskInput.value)
+    }
+
+    // clear value of input after adding process
+    taskInput.value = '';
+}
+
+
+//* 2- DELETING THE TASK  ----------------------------------------------------
+
+function deletingTask(e){
+
+    // DOM Element (task text)
+    let taskText = e.target.parentElement.parentElement.parentElement
+
+    // Delete the task;
+    taskText.remove();
+
+    // Delete also from local storage by the function with parameter that text of the task
+    deleteFromLocalStorage(e.target.parentElement.previousElementSibling.textContent)
+}
+
+
+// //* 3- DELETING ALL TASKS ----------------------------------------------------
+
+function deleteAllItems(e) {
+
+    e.preventDefault();
+
+    //test
+    console.log('selected category: '+selectedCategory)
+
+    // DOM (create a new dom element because of to include new tasks)
+    taskDivNew = document.querySelectorAll('.task-section')
+
+    // While on Active category
+    if(selectedCategory=='active'){
+        taskDivNew.forEach(function(task){
+            //for all task item; if it has checked, remove it
+            if(!task.firstElementChild.firstElementChild.firstElementChild.checked){
+                task.remove();
+            }
+        })
+   }
+
+    // While on Completed category
+    if(selectedCategory=='completed'){
+        taskDivNew.forEach(function(task){
+            //for all task item; if it hasnot checked, remove it
+            if(task.firstElementChild.firstElementChild.firstElementChild.checked){
+                task.remove();
+            }
+        })
+   }
+
+    // While on ALL category
+    if(selectedCategory=='all'){
+        taskDivNew.forEach(function(task){
+            //remove all tasks
+            task.remove();
+        })
+   }
+}
+
+
+// ! ------------ LOCAL STORAGE ------------ 
+
+
+//* lOAD ITEMS -----------------------------------------------
+loadItems();
+
+function loadItems(){
+    items = getItemsFromLocalStorage();
+
+    items.forEach(function(item){
+        createItem(item)
+    })
+}
+
+
+//* GET ITEMS -----------------------------------------------
+function getItemsFromLocalStorage(){
+
+    if(localStorage.getItem('items')===null){
+        items = [];
+    }else {
+        items = JSON.parse(localStorage.getItem('items'))
+    }
+    return items;
+}
+
+
+//* SET ITEMS  -----------------------------------------------
+
+function setItemToLocalStorage(text){
+    items = getItemsFromLocalStorage();
+    items.push(text);
+    localStorage.setItem('items',JSON.stringify(items))
+}
+
+
+//* DELETE ALSO FROM LOCAL STORAGE ----------------------------
+
+function deleteFromLocalStorage(text){
+    items = getItemsFromLocalStorage();
+    items.forEach(function(item,index){
+        if(item === text){
+            items.splice(index,1)
+        }
+    })
+    localStorage.setItem('items',JSON.stringify(items))
+}
+
+
+
+
+
+// ! CREATING ITEM (APPENDCHILD) ------------------------------------------
+
+//* CREATE ITEM FUNCTION THAT GENERATE NEW TASKS --------------------------
+
+function createItem(text){
+     
     //create div
     created_taskSection = document.createElement('div')
     created_taskSection.className = 'task-section'
@@ -181,7 +316,7 @@ addTaskBtn.addEventListener('click', function (e) {
     // create p
     created_taskName = document.createElement('p')
     created_taskName.className = 'task-name-text'
-    created_taskName.innerHTML = newTask
+    created_taskName.innerHTML = text
 
     // create icon
     created_iconDiv = document.createElement('div')
@@ -202,100 +337,23 @@ addTaskBtn.addEventListener('click', function (e) {
 
     created_form.appendChild(created_checkbox)
     created_iconDiv.appendChild(created_spanIcon)
-
-    console.log(created_taskSection) // test (delate later)
-
-    }
-    // clear value of input
-    taskInput.value = '';
-
-})
+}
 
 
 
+//* CHECKING THE CHECKBOXES ----------------------------------------------------
 
-//* DELETING A TASK
+function taskChecked(e){
 
-// add event listener to all section
-allTasks.addEventListener('click', function (e) {
+    // DOM Element (task text)
+    let taskText = e.target.parentElement.parentElement.parentElement
 
-    // if you clicked to delete icon...
-    if (e.target.className.includes('delete-icon')) {
+    if(e.target.checked){
+       //if checkbox is checked, make the task lined
+       taskText.style.textDecoration='line-through'
 
-        // add delete class name of the parent of target
-        e.target.parentElement.parentElement.parentElement.remove()
-    }
-
-    //* DONE TASK
-
-    // if you clicked to checkbox...
-    if (e.target.className == 'checkbox') {
-
-        if (e.target.checked) {
-            console.log('checked')
-            // e.target.parentElement.parentElement.parentElement.style.textDecoration='line-through'
-
-            e.target.parentElement.parentElement.parentElement.classList.add('done')
-
-        } else {
-            // e.target.parentElement.parentElement.parentElement.style.textDecoration=''
-
-            e.target.parentElement.parentElement.parentElement.classList.remove('done')
-
-        }
-
-
-    }
-
-})
-
-
-//test
-document.addEventListener('click',function(e){
-    e.target;
-    console.log(selectedCategory)
-})
-
-
-
-//* DELETING ALL TASKS
-
-// add event listener
-deleteAllBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-
-    if (selectedCategory == 'active') {
-
-        let taskDivNew = document.querySelectorAll('.task-section')
-
-        for (let i = 0; i < taskDivNew.length; i++) {
-            if (!taskDivNew[i].className.includes('done')) {
-                taskDivNew[i].remove();
-            }
-        }
-    }
-
-    if (selectedCategory == 'completed') {
-
-        let taskDivNew = document.querySelectorAll('.task-section')
-
-        for (let i = 0; i < taskDivNew.length; i++) {
-            if (taskDivNew[i].className.includes('done')) {
-                taskDivNew[i].remove();
-            }
-        }
-    }
-
-
-    if (selectedCategory == 'all') {
-
-        let taskDivNew = document.querySelectorAll('.task-section')
-        
-        //test
-        console.log(taskDivNew)
-
-        for (let i = 0; i < taskDivNew.length; i++) {
-            taskDivNew[i].remove()
-        }
-    }
-})
+   }else{
+        //if checkbox isn't checked, make the task text without lined
+        taskText.style.textDecoration=''   
+   }
+}

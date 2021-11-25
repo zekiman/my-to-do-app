@@ -185,9 +185,6 @@ hr {
     text-transform: uppercase;
 }
 
-.done {
-    text-decoration: line-through;
-}
 
 .icon-div {
     margin-left: auto;
@@ -248,7 +245,3 @@ hr {
     margin: auto;
 }
 
-
-.deleted{
-    display: none;
-}
